@@ -49,12 +49,12 @@ export default {
         login() {
             this.$refs.loginFormRef.validate(async valid => {
                 if (!valid) return;
-                const {data:res} = await this.$http.post("login", this.loginForm);
+                const {data:res} = await this.$http.post("/user/login", this.loginForm);
                 if (res.isSuccess){
                     console.log(res);
                     this.$message.success("登陆成功");
                     window.sessionStorage.setItem("user", res.user);
-                    this.$router.push({path:"/placeorder"});
+                    this.$router.push({path:"/home"});
                     this.$router.replace()
                 }else{
                     console.log(res);
@@ -66,3 +66,4 @@ export default {
    
 }
 </script>
+
