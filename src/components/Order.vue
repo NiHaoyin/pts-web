@@ -56,7 +56,7 @@ import axios from 'axios'
     methods:{
         placeorder(){
             var that = this;
-            axios.post('/placeorder', that.form).then(
+            axios.post('/order/place', that.form).then(
                 function(res){
                     console.log(res);
                     if (res.data.isSuccess){

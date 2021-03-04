@@ -1,6 +1,13 @@
 <template>
 <el-container>
-  <el-header>Header</el-header>
+  <!-- 头部栏 -->
+  <el-header>
+    <div>
+      欢迎使用托盘配送信息系统
+    </div>
+    
+   
+  </el-header>
 
   <el-container>
     <!-- 侧边栏 -->
@@ -10,32 +17,21 @@
     <el-menu
       class="sideMenu"
       :router='true'>
-      <el-submenu index="1" class="sideMenu">
-        <template slot="title">
-          <i class="el-icon-location"></i>
-          <span>导航一</span>
-        </template>
-        <el-menu-item-group>
-          <el-menu-item index="1-1" class="sideMenu">选项1</el-menu-item>
-          <el-menu-item index="1-2" class="sideMenu">选项2</el-menu-item>
-          <el-menu-item index="1-3" >选项3</el-menu-item>
-        </el-menu-item-group>
-      </el-submenu>
+      <el-menu-item index="1" class="sideMenu">
+        <i class="el-icon-menu"></i>
+        <span slot="title">导航一</span>
+      </el-menu-item>
       <el-menu-item index="2" class="sideMenu">
         <i class="el-icon-menu"></i>
         <span slot="title">导航二</span>
       </el-menu-item>
-      <el-menu-item index="3" class="sideMenu">
-        <i class="el-icon-document"></i>
-        <span slot="title">导航三</span>
+      <el-menu-item index="/order" class="sideMenu">
+        <i class="el-icon-s-order"></i>
+        <span slot="title"><router-link to="/order"></router-link>订单模块</span>
       </el-menu-item>
-      <el-menu-item index="4" class="sideMenu">
-        <i class="el-icon-setting"></i>
-        <span slot="title">导航四</span>
-      </el-menu-item>
-      <el-menu-item index="user" class="sideMenu">
-        <i class="el-icon-setting"></i>
-        <span slot="title">用户管理</span>
+      <el-menu-item index="/user" class="sideMenu" active-text-color="#409eff">
+        <i class="el-icon-user"></i>
+        <span slot="title"><router-link to="/user"></router-link>用户管理</span>
       </el-menu-item>
     </el-menu>
     </el-col>
@@ -82,16 +78,5 @@ export default {
     /* line-height: 160px; */
   }
   
-  body > .el-container {
-    margin-bottom: 40px;
-  }
   
-  .el-container:nth-child(5) .el-aside,
-  .el-container:nth-child(6) .el-aside {
-    line-height: 260px;
-  }
-  
-  .el-container:nth-child(7) .el-aside {
-    line-height: 320px;
-  }
 </style>

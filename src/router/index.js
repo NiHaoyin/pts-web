@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import PlaceOrder from '../components/PlaceOrder.vue'
+import Order from '../components/Order.vue'
 import Login from '../components/Login.vue'
 import Home from '../components/Home.vue'
 import User from '../components/User.vue'
@@ -19,14 +19,12 @@ const routes = [
   {
     path: "/home",
     component: Home,
-    redirect: "/user",
+    // redirect: "/user",
     children: [
-      {path: "/user", component: User}
+      {path: "/user", component: User},
+      {path: "/order", component: Order},
+
     ]
-  },
-  {
-    path: "/placeorder",
-    component: PlaceOrder
   },
 
 ]

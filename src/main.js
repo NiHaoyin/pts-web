@@ -11,6 +11,9 @@ Vue.prototype.$http = axios
 
 // 设置访问根路径
 axios.defaults.baseURL = "http://localhost:8081"
+// 跨域让请求携带cookie
+axios.defaults.withCredentials=false;
+
 Vue.config.productionTip = false
 
 new Vue({
