@@ -1,8 +1,8 @@
 <template>
-    <div align="left">
-
+    <div >
+      
     <!-- 添加用户按钮 -->
-    <el-row>
+    <el-row type="flex" justify="start">
     <el-button @click="dialogFormVisible = true" type="primary">添加用户</el-button>
     <!-- 激活所有用户按钮 -->
     <el-button @click="activateAllUser()" type="primary">激活所有用户</el-button>
@@ -32,7 +32,7 @@
     <div>
       <!-- 用户信息 -->
       <el-table :data="userlist" stripe border>
-      <el-table-column prop="id" label="用户id" width="75">
+      <el-table-column prop="userId" label="用户id" width="75">
       </el-table-column>
       <el-table-column  prop="username" label="用户名" width="120">
       </el-table-column>

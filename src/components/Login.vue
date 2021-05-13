@@ -55,7 +55,7 @@ export default {
                 if (res.isSuccess){
                     console.log(res);
                     this.$message.success("登陆成功");
-                    window.sessionStorage.setItem("user", this.loginForm.username);
+                    window.sessionStorage.setItem("userId", res.data);
                     this.$router.push({path:"/home"});
                     this.$router.replace()
                 }else{

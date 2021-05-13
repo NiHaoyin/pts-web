@@ -1,29 +1,28 @@
 <template>
-<el-container>
+<el-container  style="solid #eee">
   <!-- 头部栏 -->
   <el-header>
     <div>
-      欢迎使用托盘配送信息系统
+      <img src="../assets/logo.png" alt/>
+      <span>欢迎使用托盘运输信息系统</span>
     </div>
-    
+    <el-button type="info" @click="logout">退出登录</el-button>
    
   </el-header>
 
-  <el-container>
+  <el-container style="height: 100%; border: 1px solid #eee">
     <!-- 侧边栏 -->
-    <el-aside width="125px">
-    <el-row width="140px" class="sideMenu">
-    <el-col :span="150" class="sideMenu">
+    <el-aside width="170px" style="height: 100%; ">
     <el-menu
       class="sideMenu"
       :router='true'>
-      <el-menu-item index="1" class="sideMenu">
+      <el-menu-item index="/tray" class="sideMenu">
         <i class="el-icon-menu"></i>
-        <span slot="title">导航一</span>
+        <span slot="title">托盘管理</span>
       </el-menu-item>
-      <el-menu-item index="2" class="sideMenu">
+      <el-menu-item index="/car" class="sideMenu">
         <i class="el-icon-menu"></i>
-        <span slot="title">导航二</span>
+        <span slot="title"><router-link to="/car"></router-link>运输车管理</span>
       </el-menu-item>
       <el-menu-item index="/order" class="sideMenu">
         <i class="el-icon-s-order"></i>
@@ -34,15 +33,13 @@
         <span slot="title"><router-link to="/user"></router-link>用户管理</span>
       </el-menu-item>
     </el-menu>
-    </el-col>
-    </el-row>
+   
     </el-aside>
 
     <!-- 主体栏 -->
     <el-main>
         <!-- 主题用路由占位符占住 -->
         <router-view>
-            
         </router-view>
     </el-main>
   </el-container>
@@ -53,22 +50,37 @@
 <script>
 export default {
     name: 'Home',
+    methods:{
+      logout(){
+        window.sessionStorage.clear();
+        this.$router.push("/login");
+      }
+    }
 }
 </script>
 
 <style>
-  .el-aside {
-    background-color: #dae0e6;
-    color: #333;
-    text-align: left;
-    line-height: 120px;
-  }
+  
 
+  .el-header{
+    /* background-color:#dae0e6; */
+    display: flex;
+    justify-content: space-between;
+    /* padding-left: 10%;
+    font-size: 20px; */
+    height: 60px;
+    /* color:#fff; */
+
+  }
+  /* .home-container{
+    height: 100%;
+  } */
   .sideMenu{
-    background-color: #dae0e6;
+    /* background-color: #dae0e6; */
     color: #333;
     text-align: left;
     line-height: 100px;
+    height: 100%;
   }
   
   .el-main {
@@ -76,6 +88,11 @@ export default {
     /* color: #333; */
     text-align: center;
     /* line-height: 160px; */
+  }
+
+  img{
+    width: 55px;
+    height: 55px;
   }
   
   

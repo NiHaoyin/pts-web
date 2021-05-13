@@ -4,6 +4,9 @@ import Order from '../components/Order.vue'
 import Login from '../components/Login.vue'
 import Home from '../components/Home.vue'
 import User from '../components/User.vue'
+import Dashboard from '../components/Dashboard.vue'
+import Car from '../components/Car.vue'
+import Tray from '../components/Tray.vue'
 
 Vue.use(VueRouter)
 
@@ -23,7 +26,9 @@ const routes = [
     children: [
       {path: "/user", component: User},
       {path: "/order", component: Order},
-
+      {path: "/dashboard", component: Dashboard},
+      {path: "/car", component: Car},
+      {path: "/tray", component: Tray},
     ]
   },
 
