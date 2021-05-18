@@ -86,7 +86,7 @@ import axios from 'axios'
           this.countRunningTray();
           this.countWaitingTray();
           this.countNoOrderTray();
-          this.listRunningTray();
+          this.listWaitingTray();
         },
         // 获取托盘详细信息
         getDetail(row){
@@ -192,3 +192,13 @@ import axios from 'axios'
     },
   }
 </script>
+
+<style>
+  .bar{
+    font-size: 16px;
+    /* text-align: center; */
+    font-weight: bold;
+    /* width:200px;height:100px; 
+    border:1px; */
+  }
+</style>

@@ -7,6 +7,7 @@
         <el-button type="primary" @click="refresh">刷新</el-button>
         <el-col :span="6"><div class="bar">运送中的运输车数量：{{runningCarCount}}</div></el-col>
         <el-col :span="6"><div class="bar">等待中的运输车数量：{{waitingCarCount}}</div></el-col>
+        <!-- <el-button type="success" round>成功按钮</el-button> -->
       </el-row>
       <!-- 表格 -->
       <el-table :data="carList" stripe border >
@@ -20,6 +21,7 @@
           </el-table-column>
           <el-table-column label="操作" width="500">
           <template slot-scope="scope">
+            <!-- <el-button type="success" round>成功按钮</el-button> -->
           <el-button  @click="getDetail(scope.row)" 
             type="primary" size="medium">详细信息</el-button>
           </template>
@@ -46,10 +48,16 @@
               <span>{{detailCar.status}}</span>
             </el-form-item>
             <el-form-item label="车速" >
-              <span>{{detailCar.speed}}</span>
+              <span>{{detailCar.speed}} km/h</span>
             </el-form-item>
             <el-form-item label="载位" >
               <span>{{detailCar.capacity}}</span>
+            </el-form-item>
+            <el-form-item label="载重" >
+              <span>{{detailCar.load}} 吨</span>
+            </el-form-item>
+            <el-form-item label="司机" >
+              <span>{{detailCar.driver}}</span>
             </el-form-item>
           </el-form>
         </el-drawer>
@@ -76,7 +84,7 @@ import axios from 'axios'
       refresh(){
         this.countRunningCar();
         this.countWaitingCar();
-        this.listRunningCar();
+        this.listWaitingCar();
       },
       // 获取车辆详细信息
       getDetail(row){

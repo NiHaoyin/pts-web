@@ -124,6 +124,9 @@
         <el-form-item label="创建时间">
           <span>{{detailOrder.created}}</span>
         </el-form-item>
+        <!-- <el-form-item label="操作">
+          <el-button type="primary" @click="finishOrder">完成订单</el-button>
+        </el-form-item> -->
       </el-form>
     </el-drawer>
     </div>
@@ -316,6 +319,23 @@ import axios from 'axios'
                  }
              )
         })
+        },
+        // 完成订单
+        finishOrder(){
+          var that = this;
+          axios.put("/order/finish?orderid=" + that.detailOrder.orderId).then(
+            function(res){
+              if(res.data.isSuccess){
+                that.$message({
+                  type: 'success',
+                  message: '完成订单!'
+                });
+                that.refresh();
+              }else{
+                that.$message.error("完成订单失败");
+              }
+            }
+          )
         },
         // 查询正在运输的订单
         listRunningOrder(){

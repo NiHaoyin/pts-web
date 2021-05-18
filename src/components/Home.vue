@@ -4,7 +4,7 @@
   <el-header>
     <div>
       <img src="../assets/logo.png" alt/>
-      <span>欢迎使用托盘运输信息系统</span>
+      <span>      欢迎使用托盘运输信息系统</span>
     </div>
     <el-button type="info" @click="logout">退出登录</el-button>
    
@@ -17,16 +17,16 @@
       class="sideMenu"
       :router='true'>
       <el-menu-item index="/tray" class="sideMenu">
-        <i class="el-icon-menu"></i>
+        <i class="el-icon-map-location"></i>
         <span slot="title">托盘管理</span>
       </el-menu-item>
       <el-menu-item index="/car" class="sideMenu">
-        <i class="el-icon-menu"></i>
+        <i class="el-icon-truck"></i>
         <span slot="title"><router-link to="/car"></router-link>运输车管理</span>
       </el-menu-item>
       <el-menu-item index="/order" class="sideMenu">
         <i class="el-icon-s-order"></i>
-        <span slot="title"><router-link to="/order"></router-link>订单模块</span>
+        <span slot="title"><router-link to="/order"></router-link>订单管理</span>
       </el-menu-item>
       <el-menu-item index="/user" class="sideMenu" active-text-color="#409eff">
         <i class="el-icon-user"></i>
@@ -66,9 +66,9 @@ export default {
     /* background-color:#dae0e6; */
     display: flex;
     justify-content: space-between;
-    /* padding-left: 10%;
-    font-size: 20px; */
-    height: 60px;
+    padding-left: 10%;
+    font-size: 20px;
+    height: 55px;
     /* color:#fff; */
 
   }

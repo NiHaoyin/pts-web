@@ -39,4 +39,17 @@ const router = new VueRouter({
   mode: 'history'
 })
 
+router.beforeEach((to, from, next) =>{
+  const userLoginFlag = window.sessionStorage.getItem("userId");
+  if(to.path == '/login'){
+    next();
+  }else{
+    if(userLoginFlag == null){
+      return next('/login');
+    }else{
+      next();
+    }
+  }
+})
+
 export default router
