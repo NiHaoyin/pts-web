@@ -95,6 +95,20 @@ import axios from 'axios'
             console.log(res);
             if(res.data.isSuccess){
               that.$message.success("查询成功");
+              switch(res.data.data.carType){
+                    case 'PBTC1':
+                      res.data.data.carType = '平板拖车(1载位)';
+                      break;
+                    case 'PBTC2':
+                      res.data.data.carType = '平板拖车(2载位)';
+                      break;
+                    case 'PBYSC':
+                      res.data.data.carType = '平板运输车';
+                      break;
+                    case 'CC':
+                      res.data.data.carType = '叉车';
+                      break;
+                  }
               that.detailCar = res.data.data;
             }else{
               that.$message.error("获取信息失败");
@@ -110,6 +124,20 @@ import axios from 'axios'
             if(res.data.isSuccess){
               for(let i = 0; i < res.data.data.length; i++){
                 res.data.data[i].position = JSON.stringify(res.data.data[i].position);
+                switch(res.data.data[i].carType){
+                    case 'PBTC1':
+                      res.data.data[i].carType = '平板拖车(1载位)';
+                      break;
+                    case 'PBTC2':
+                      res.data.data[i].carType = '平板拖车(2载位)';
+                      break;
+                    case 'PBYSC':
+                      res.data.data[i].carType = '平板运输车';
+                      break;
+                    case 'CC':
+                      res.data.data[i].carType = '叉车';
+                      break;
+                  }
               }
               that.carList = res.data.data;
               that.$message.success("查询成功");
@@ -127,6 +155,20 @@ import axios from 'axios'
             if(res.data.isSuccess){
               for(let i = 0; i < res.data.data.length; i++){
                 res.data.data[i].position = JSON.stringify(res.data.data[i].position);
+                switch(res.data.data[i].carType){
+                    case 'PBTC1':
+                      res.data.data[i].carType = '平板拖车(1载位)';
+                      break;
+                    case 'PBTC2':
+                      res.data.data[i].carType = '平板拖车(2载位)';
+                      break;
+                    case 'PBYSC':
+                      res.data.data[i].carType = '平板运输车';
+                      break;
+                    case 'CC':
+                      res.data.data[i].carType = '叉车';
+                      break;
+                  }
               }
               that.carList = res.data.data;
               that.$message.success("查询成功");

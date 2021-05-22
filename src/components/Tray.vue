@@ -31,7 +31,7 @@
       title=托盘详细信息
       :visible.sync="drawer"
       size = "30%">
-      <el-form ref="detailTray" :model="detailTray" label-width="120px" 
+      <el-form ref="detailTray" :model="detailTray" label-width="160px" 
       label-position="middle" >
         <el-form-item label="托盘Id">
           <span>{{detailTray.trayId}}</span>
@@ -97,6 +97,35 @@ import axios from 'axios'
                 console.log(res);
                 if(res.data.isSuccess){
                   that.$message.success("查询成功");
+                  console.log(res.data.data);
+                  res.data.data.trayType = that.translateTrayType(res.data.data.trayType);
+                  switch(res.data.data.firstCarType){
+                    case 'PBTC':
+                      res.data.data.firstCarType = '平板拖车';
+                      break;
+                    case 'PBYSC':
+                      res.data.data.firstCarType = '平板运输车';
+                      break;
+                    case 'CC':
+                      res.data.data.firstCarType = '叉车';
+                      break;
+                  }
+                  switch(res.data.data.secondCarType){
+                    case 'PBTC1':
+                      res.data.data.secondCarType = '平板拖车(1载位)';
+                      break;
+                    case 'PBTC2':
+                      res.data.data.secondCarType = '平板拖车(2载位)';
+                      break;
+                    case 'PBYSC':
+                      res.data.data.secondCarType = '平板运输车';
+                      break;
+                    case 'CC':
+                      res.data.data.secondCarType = '叉车';
+                      break;
+                    case '':
+                      res.data.data.secondCarType = '无';
+                  }
                   that.detailTray = res.data.data;
                 //   that.dialogTableVisible = true;
                 }else{
@@ -111,6 +140,9 @@ import axios from 'axios'
           axios.get("/tray/list?status=running").then(
             function(res){
               if(res.data.isSuccess){
+                for(let i=0; i < res.data.data.length;i++){
+                  res.data.data[i].trayType = that.translateTrayType(res.data.data[i].trayType);
+                }
                 that.trayList = res.data.data;
                 that.$message.success("查询成功");
               }else{
@@ -125,6 +157,9 @@ import axios from 'axios'
           axios.get("/tray/list?status=waiting").then(
             function(res){
               if(res.data.isSuccess){
+                for(let i=0; i < res.data.data.length;i++){
+                  res.data.data[i].trayType = that.translateTrayType(res.data.data[i].trayType);
+                }
                 that.trayList = res.data.data;
                 that.$message.success("查询成功");
               }else{
@@ -139,6 +174,9 @@ import axios from 'axios'
           axios.get("/tray/list?status=noOrder").then(
             function(res){
               if(res.data.isSuccess){
+                for(let i=0; i < res.data.data.length;i++){
+                  res.data.data[i].trayType = that.translateTrayType(res.data.data[i].trayType);
+                }
                 that.trayList = res.data.data;
                 that.$message.success("查询成功");
               }else{
@@ -189,6 +227,28 @@ import axios from 'axios'
             }
           )
         },
+        // 托盘类型转成中文
+        translateTrayType(oriTrayType){
+          switch(oriTrayType) {
+            case 'FD':
+                return '分段托盘'; 
+            case 'ZD':
+                return '总段托盘';
+            case 'GFJ':
+                return '管附件托盘';
+            case 'AZSB':
+                return '安装设备托盘';
+            case 'XZJ':
+                return '舾装件托盘';
+            case 'CL':
+                return '材料托盘';
+            case 'BZJ':
+                return '部组件托盘';
+            default:
+                return '未知托盘';
+          }
+        },
+        // new function here
     },
   }
 </script>
