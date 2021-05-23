@@ -193,7 +193,7 @@ import axios from 'axios'
           }
           var that = this;
           row.active = !row.active;
-          axios.put("/user/activate?userid="+row.id+"&active="+row.active).then(
+          axios.put("/user/activate?userid="+row.userId+"&active="+row.active).then(
             function(res){
               console.log(res);
               if(res.data.isSuccess){
@@ -261,7 +261,7 @@ import axios from 'axios'
             this.$message({type: 'warning',message: '该用户不能被删除!'});
             return;
           }
-          axios.delete("/user/delete?userid="+row.id).then(
+          axios.delete("/user/delete?userid="+row.userId).then(
             function(res){
               console.log(res);
               if (res.data.isSuccess){
