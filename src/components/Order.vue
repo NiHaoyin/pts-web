@@ -85,6 +85,8 @@
           type="primary" size="medium">详细信息</el-button>
           <el-button :disabled="scope.row.status != 'waiting'" @click="deleteOrder(scope.row)" 
           type="danger" size="medium">删除订单</el-button>
+          <el-button type="primary" size="medium" :disabled="scope.row.status != 'running'" 
+          @click="finishOrder(scope.row)">完成订单</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -321,21 +323,27 @@ import axios from 'axios'
         })
         },
         // 完成订单
-        finishOrder(){
+        finishOrder(row){
           var that = this;
-          axios.put("/order/finish?orderid=" + that.detailOrder.orderId).then(
-            function(res){
-              if(res.data.isSuccess){
-                that.$message({
-                  type: 'success',
-                  message: '完成订单!'
-                });
-                that.refresh();
-              }else{
-                that.$message.error("完成订单失败");
+          this.$confirm('确认完成订单吗?', {
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+            type: 'warning'
+          }).then(() => {
+            axios.put("/order/finish?orderid=" + row.orderId).then(
+              function(res){
+                if(res.data.isSuccess){
+                  that.$message({
+                    type: 'success',
+                    message: '完成订单!'
+                  });
+                  that.refresh();
+                }else{
+                  that.$message.error("完成订单失败");
+                }
               }
-            }
-          )
+            )
+          })
         },
         // 查询正在运输的订单
         listRunningOrder(){
@@ -398,6 +406,17 @@ import axios from 'axios'
               console.log(res);
               if(res.data.isSuccess){
                 that.orderTable = res.data.data;
+                for(let i = 0; i < res.data.data.length; i++){
+                  let priority = that.orderTable[i].priority;
+                  if(priority >= 3){
+                    that.orderTable[i].priority = '非常紧急';
+                  }else if(priority == 2){
+                    that.orderTable[i].priority = '紧急';
+                  }else{
+                    that.orderTable[i].priority = '普通';
+                  }
+                  that.orderTable[i].status = "Finished";
+                }
                 that.$message("查询成功");
               }else{
                 that.$message("查询失败");
@@ -433,6 +452,7 @@ import axios from 'axios'
                   if(res.data.data.carId == ""){
                     res.data.data.carId = "未分配运输车";
                   }
+                  res.data.data.status = "Finished";
                   that.detailOrder = res.data.data;
                   
                   // that.dialogTableVisible = true;

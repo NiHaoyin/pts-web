@@ -46,12 +46,12 @@
       <!-- 操作按钮 -->
       <el-table-column label="操作" width="500">
         <template slot-scope="scope">
-          <el-button :disabled="scope.row.active" @click="activate(scope.row)" 
-          type="text" size="medium">激活用户</el-button>
+          <el-button  :disabled="scope.row.active" @click="activate(scope.row)" 
+          type="primary" size="medium">激活用户</el-button>
           <el-button :disabled="!scope.row.active" @click="activate(scope.row)" 
-          type="text" size="medium">注销用户</el-button>
+          type="danger" size="medium">注销用户</el-button>
           <el-button  @click="deleteUser(scope.row)" 
-          type="text" size="medium">彻底删除用户</el-button>
+          type="danger" size="medium">彻底删除用户</el-button>
         </template>
       </el-table-column>
       </el-table>
