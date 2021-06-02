@@ -452,7 +452,7 @@ import axios from 'axios'
                   if(res.data.data.carId == ""){
                     res.data.data.carId = "未分配运输车";
                   }
-                  res.data.data.status = "Finished";
+                  // res.data.data.status = "Finished";
                   that.detailOrder = res.data.data;
                   
                   // that.dialogTableVisible = true;
